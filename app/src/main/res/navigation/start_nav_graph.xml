@@ -24,14 +24,6 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
-        <argument
-            android:name="login"
-            android:defaultValue=""
-            app:argType="string" />
-        <argument
-            android:name="password"
-            android:defaultValue=""
-            app:argType="string" />
     </fragment>
 
     <fragment
@@ -39,19 +31,12 @@
         android:name="ru.dashkevich.viewapp.screens.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
         <argument
             android:name="login"
-            android:defaultValue="null"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string"/>
         <argument
             android:name="password"
-            android:defaultValue="null"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string"/>
     </fragment>
 
 

@@ -19,8 +19,6 @@ import ru.dashkevich.viewapp.util.ui.toast
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
-    private var password: String = ""
-    private var login: String = ""
     private val navArgs by navArgs<RegisterFragmentArgs>()
 
 
@@ -44,6 +42,7 @@ class RegisterFragment : Fragment() {
 
 
             registerButton.setOnClickListener {
+
             }
         }
 
@@ -51,17 +50,22 @@ class RegisterFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        findNavController().previousBackStackEntry?.savedStateHandle?.apply {
-            set(USER_LOGIN, binding.loginInput.text)
-            set(USER_PASSWORD, binding.passwordInput.text)
-            toast("find NavController Work", requireContext())
-        }
+        logE("RegisterFragment", "login = ${binding.loginInput.text}")
+        logE("RegisterFragment", "password = ${binding.passwordInput.text}")
+        findNavController().previousBackStackEntry
+            ?.savedStateHandle
+            ?.set(USER_LOGIN, binding.loginInput.text)
+        findNavController().previousBackStackEntry
+            ?.savedStateHandle
+            ?.set(USER_PASSWORD, binding.passwordInput.text)
+        logE("RegisterFragment", "findNavController: ${findNavController()}")
+        logE("RegisterFragment", "destination: ${findNavController().previousBackStackEntry?.destination}")
+        logE("RegisterFragment", "onStop")
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
-
-        toast("Destroy", requireContext())
     }
 
     companion object {
