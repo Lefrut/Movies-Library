@@ -48,12 +48,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
+    <CheckBox
+        android:id="@+id/checkBox_save_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remember_me" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:layout_marginTop="@dimen/button_top_margin">
+        android:text="@string/login">
 
     </com.google.android.material.button.MaterialButton>
 

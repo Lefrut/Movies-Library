@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
@@ -60,6 +61,12 @@ class LoginFragment : Fragment(), Binding<FragmentLoginBinding> {
                 }
             }
 
+            checkBoxSaveUser.setOnClickListener{ checkBox ->
+                if(checkBox is CheckBox) {
+                    checkBoxClicked(checkBox.id, checkBox.isChecked)
+                }
+            }
+
             loginButton.setOnClickListener {
                 loginClicked(loginInput.text.toString(), passwordInput.text.toString())
             }
@@ -70,6 +77,7 @@ class LoginFragment : Fragment(), Binding<FragmentLoginBinding> {
 
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -79,6 +87,19 @@ class LoginFragment : Fragment(), Binding<FragmentLoginBinding> {
     companion object {
         fun newInstance() = LoginFragment()
     }
+
+    private fun checkBoxClicked(id: Int, isChecked: Boolean) {
+        when(id){
+            R.id.checkBox_save_user ->{
+                if(isChecked){
+
+                }else{
+
+                }
+            }
+        }
+    }
+
 
 
     private fun loginClicked(login: String = "", password: String = "") {
