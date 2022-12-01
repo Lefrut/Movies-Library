@@ -9,48 +9,60 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import ru.dashkevich.viewapp.R
 import ru.dashkevich.viewapp.common.Binding
+import ru.dashkevich.viewapp.data.repository.DataStoreRepository
 import ru.dashkevich.viewapp.databinding.FragmentSplashBinding
-import ru.dashkevich.viewapp.util.log.FRAGMENT
-import ru.dashkevich.viewapp.util.log.logD
+import ru.dashkevich.viewapp.util.constants.dataStore
+import ru.dashkevich.viewapp.util.log.logE
 
 class SplashFragment : Fragment(), Binding<FragmentSplashBinding> {
 
     private lateinit var viewModel: SplashViewModel
     override var _binding: FragmentSplashBinding? = null
 
-    companion object {
-        fun newInstance(): SplashFragment {
-            return SplashFragment()
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[SplashViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            SplashViewModel.Companion.Factory(
+                DataStoreRepository(requireContext().dataStore)
+            )
+        )[SplashViewModel::class.java]
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentSplashBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val progressBar = binding.progressBar
-        viewModel.progress.observe(viewLifecycleOwner) { progressNow ->
-            progressBar.progress = progressNow
-            if (progressBar.progress >= 100) {
-                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+
+        viewModel.readyNextScreen.observe(viewLifecycleOwner){ data ->
+            progressBar.progress = data.progress
+            if(data.progress >= 100 && data.dataTake){
+                viewModel.rememberUser.value?.let { navigateNextScreen(rememberUser = it) }
             }
+        }
+
+
+    }
+
+    private fun navigateNextScreen(rememberUser: Boolean){
+        if(!rememberUser) {
+            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+        }else{
+            logE("SplashScreen", "DataStore Worked: $rememberUser")
+            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        viewModel.clearData()
     }
 
     override fun onDestroy() {

@@ -25,6 +25,7 @@ import ru.dashkevich.viewapp.data.repository.DataStoreRepository
 import ru.dashkevich.viewapp.databinding.FragmentLoginBinding
 import ru.dashkevich.viewapp.util.constants.USER_LOGIN
 import ru.dashkevich.viewapp.util.constants.USER_PASSWORD
+import ru.dashkevich.viewapp.util.constants.dataStore
 import ru.dashkevich.viewapp.util.log.logE
 import ru.dashkevich.viewapp.util.ui.toast
 
@@ -33,14 +34,6 @@ val REMEMBER_USER_KEY = booleanPreferencesKey("remember_user")
 
 class LoginFragment : Fragment(), Binding<FragmentLoginBinding> {
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
-        name = "settings",
-        corruptionHandler = ReplaceFileCorruptionHandler { error ->
-            logE("DataStore", "error create dataStore: ${error.message}")
-            emptyPreferences()
-        },
-        scope = CoroutineScope(Dispatchers.IO)
-    )
 
     override var _binding: FragmentLoginBinding? = null
     lateinit var viewModel: LoginViewModel
@@ -85,12 +78,8 @@ class LoginFragment : Fragment(), Binding<FragmentLoginBinding> {
                 }
             }
 
-            viewModel.rememberUser.observe(viewLifecycleOwner){ rememberUser ->
-                if(rememberUser){
-
-                }else{
-
-                }
+            checkBoxRememberUser.setOnCheckedChangeListener(){ _, isChecked ->
+                viewModel.addOptionRememberUser(isChecked)
             }
 
 

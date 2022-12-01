@@ -9,36 +9,14 @@ import ru.dashkevich.viewapp.util.log.logI
 
 class LoginViewModel(private val dataStoreRepository: DataStoreRepository) : ViewModel() {
 
-    private val _rememberUser: MutableLiveData<Boolean> = MutableLiveData(false)
-    val rememberUser: LiveData<Boolean> = _rememberUser
-
-    init{
-        //getOptionRememberUser()
-    }
-
     fun addOptionRememberUser(rememberUser: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepository.addOptionRememberUser(rememberUser).onSuccess { preference ->
                 logI("DataStore", "add Option: ${preference[REMEMBER_USER_KEY]}")
             }.onFailure { error ->
-                logE("DataStore", "addOption: ${error.localizedMessage}")
+                logE("DataStore", "add Option: ${error.localizedMessage}")
             }
         }
-    }
-
-    private fun getOptionRememberUser() {
-        viewModelScope.launch {
-            dataStoreRepository.getOptionRememberUser().onSuccess { data ->
-                data.collect {
-                    if (it != null) _rememberUser.postValue(it)
-                    else _rememberUser.postValue(false)
-                }
-            }.onFailure { error ->
-                _rememberUser.postValue(false)
-                logE("DataStore", "getOption: ${error.localizedMessage}")
-            }
-        }
-
     }
 
     companion object {
