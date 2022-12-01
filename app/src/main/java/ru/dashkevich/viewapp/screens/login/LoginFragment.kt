@@ -1,36 +1,60 @@
 package ru.dashkevich.viewapp.screens.login
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import androidx.core.os.bundleOf
+import androidx.datastore.core.DataMigration
+import androidx.datastore.core.DataStore
+import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import ru.dashkevich.viewapp.R
 import ru.dashkevich.viewapp.common.Binding
+import ru.dashkevich.viewapp.data.repository.DataStoreRepository
 import ru.dashkevich.viewapp.databinding.FragmentLoginBinding
 import ru.dashkevich.viewapp.util.constants.USER_LOGIN
 import ru.dashkevich.viewapp.util.constants.USER_PASSWORD
-import ru.dashkevich.viewapp.util.log.logD
 import ru.dashkevich.viewapp.util.log.logE
 import ru.dashkevich.viewapp.util.ui.toast
 
+val REMEMBER_USER_KEY = booleanPreferencesKey("remember_user")
 
 
 class LoginFragment : Fragment(), Binding<FragmentLoginBinding> {
 
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+        name = "settings",
+        corruptionHandler = ReplaceFileCorruptionHandler { error ->
+            logE("DataStore", "error create dataStore: ${error.message}")
+            emptyPreferences()
+        },
+        scope = CoroutineScope(Dispatchers.IO)
+    )
+
     override var _binding: FragmentLoginBinding? = null
-    private lateinit var viewModel: LoginViewModel
-    var key = true
+    lateinit var viewModel: LoginViewModel
+
+    private var key = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            LoginViewModel.Companion.Factory(
+                DataStoreRepository(requireContext().dataStore)
+            )
+        )[LoginViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -61,43 +85,25 @@ class LoginFragment : Fragment(), Binding<FragmentLoginBinding> {
                 }
             }
 
-            checkBoxSaveUser.setOnClickListener{ checkBox ->
-                if(checkBox is CheckBox) {
-                    checkBoxClicked(checkBox.id, checkBox.isChecked)
+            viewModel.rememberUser.observe(viewLifecycleOwner){ rememberUser ->
+                if(rememberUser){
+
+                }else{
+
                 }
             }
+
 
             loginButton.setOnClickListener {
                 loginClicked(loginInput.text.toString(), passwordInput.text.toString())
             }
-
-
         }
-
-
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
-
-    private fun checkBoxClicked(id: Int, isChecked: Boolean) {
-        when(id){
-            R.id.checkBox_save_user ->{
-                if(isChecked){
-
-                }else{
-
-                }
-            }
-        }
     }
 
 
@@ -108,20 +114,6 @@ class LoginFragment : Fragment(), Binding<FragmentLoginBinding> {
             password = password
         )
         findNavController().navigate(action)
-
-
-        /*findNavController().navigate(
-            R.id.action_loginFragment_to_registerFragment,
-            bundleOf(USER_LOGIN to login, USER_PASSWORD to password),
-            navOptions {
-                anim {
-                    enter = androidx.navigation.ui.R.anim.nav_default_enter_anim
-                    popEnter = androidx.navigation.ui.R.anim.nav_default_pop_enter_anim
-                    popExit = androidx.navigation.ui.R.anim.nav_default_pop_enter_anim
-                    exit = androidx.navigation.ui.R.anim.nav_default_exit_anim
-                }
-            }
-        )*/
     }
 
     private fun getRegisterValues(): Pair<String, String>? {
