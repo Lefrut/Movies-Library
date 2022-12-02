@@ -37,7 +37,6 @@ class SplashViewModel(private val dataStoreRepository: DataStoreRepository) : Vi
                     updateReadyNextScreen(_readyNextScreen.value?.copy(dataTake = true))
                     startProgressBar()
                 }
-
             }.onFailure { error ->
                 _rememberUser.postValue(false)
                 logE("DataStore", "getOption: ${error.localizedMessage}")
