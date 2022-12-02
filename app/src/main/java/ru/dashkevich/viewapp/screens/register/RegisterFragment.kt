@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ru.dashkevich.viewapp.databinding.FragmentRegisterBinding
@@ -19,11 +21,13 @@ import ru.dashkevich.viewapp.util.ui.toast
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
+    private lateinit var viewModel: RegisterViewModel
     private val navArgs by navArgs<RegisterFragmentArgs>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
     }
 
     override fun onCreateView(
