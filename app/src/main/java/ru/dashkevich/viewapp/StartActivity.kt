@@ -1,11 +1,15 @@
 package ru.dashkevich.viewapp
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import ru.dashkevich.viewapp.databinding.ActivityMainBinding
 import ru.dashkevich.viewapp.databinding.ActivityStartBinding
+import ru.dashkevich.viewapp.screens.main.MainActivity
 import ru.dashkevich.viewapp.util.log.logE
 
 class StartActivity : AppCompatActivity() {

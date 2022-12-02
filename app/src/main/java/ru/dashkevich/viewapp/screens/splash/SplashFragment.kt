@@ -1,5 +1,8 @@
 package ru.dashkevich.viewapp.screens.splash
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,11 +11,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import ru.dashkevich.viewapp.R
+import ru.dashkevich.viewapp.StartActivity
 import ru.dashkevich.viewapp.common.Binding
 import ru.dashkevich.viewapp.data.repository.DataStoreRepository
 import ru.dashkevich.viewapp.databinding.FragmentSplashBinding
+import ru.dashkevich.viewapp.screens.main.MainActivity
 import ru.dashkevich.viewapp.util.constants.dataStore
 import ru.dashkevich.viewapp.util.log.logE
+import ru.dashkevich.viewapp.util.log.logI
+import ru.dashkevich.viewapp.util.ui.toast
 
 class SplashFragment : Fragment(), Binding<FragmentSplashBinding> {
 
@@ -40,7 +47,6 @@ class SplashFragment : Fragment(), Binding<FragmentSplashBinding> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val progressBar = binding.progressBar
-
         viewModel.readyNextScreen.observe(viewLifecycleOwner){ data ->
             progressBar.progress = data.progress
             if(data.progress >= 100 && data.dataTake){
@@ -55,8 +61,7 @@ class SplashFragment : Fragment(), Binding<FragmentSplashBinding> {
         if(!rememberUser) {
             findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         }else{
-            logE("SplashScreen", "DataStore Worked: $rememberUser")
-            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+            launchMainActivity(requireContext())
         }
     }
 
@@ -65,8 +70,16 @@ class SplashFragment : Fragment(), Binding<FragmentSplashBinding> {
         _binding = null
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    private fun launchMainActivity(context: Context){
+        if(context as Activity is StartActivity) {
+            try {
+                val intent = Intent(context, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+            }catch (ex: Exception){
+                logE("StartActivity", "intent error: ${ex.message}")
+            }
+        }
     }
 
 

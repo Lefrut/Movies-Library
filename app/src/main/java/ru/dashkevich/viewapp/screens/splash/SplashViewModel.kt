@@ -4,54 +4,61 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import ru.dashkevich.viewapp.data.repository.DataStoreRepository
 import ru.dashkevich.viewapp.util.log.logE
+import ru.dashkevich.viewapp.util.log.logI
 
-data class ReadyNextScreen(var progress: Int = 0, val dataTake: Boolean = false)
+data class ReadyNextScreen(
+    var progress: Int = 0,
+    val dataTake: Boolean = false
+)
 
 class SplashViewModel(private val dataStoreRepository: DataStoreRepository) : ViewModel() {
 
-    private val _readyNextScreen: MutableLiveData<ReadyNextScreen> = MutableLiveData(ReadyNextScreen())
+
+    private val _readyNextScreen: MutableLiveData<ReadyNextScreen> =
+        MutableLiveData(ReadyNextScreen())
     val readyNextScreen: LiveData<ReadyNextScreen> = _readyNextScreen
 
     private val _rememberUser: MutableLiveData<Boolean> = MutableLiveData(false)
     val rememberUser: LiveData<Boolean> = _rememberUser
 
 
-
     init {
-        getOptionRememberUser()
-        viewModelScope.launch(Dispatchers.Default) {
-            startProgressBar()
-        }
+        splashScreenLoading()
     }
-    private fun getOptionRememberUser() {
+
+    private fun splashScreenLoading(){
         viewModelScope.launch {
             dataStoreRepository.getOptionRememberUser().onSuccess { data ->
                 data.collect {
                     if (it != null) _rememberUser.postValue(it)
                     else _rememberUser.postValue(false)
+                    updateReadyNextScreen(_readyNextScreen.value?.copy(dataTake = true))
+                    startProgressBar()
                 }
+
             }.onFailure { error ->
                 _rememberUser.postValue(false)
                 logE("DataStore", "getOption: ${error.localizedMessage}")
             }
-            _readyNextScreen.postValue(_readyNextScreen.value?.copy(dataTake = true))
         }
     }
 
+    @Synchronized
+    fun updateReadyNextScreen(readyNextScreen: ReadyNextScreen?){
+        _readyNextScreen.postValue(readyNextScreen!!)
+    }
 
     private suspend fun startProgressBar() {
-        readyNextScreen.value?.apply {
-            while (progress != 99) {
-                delay(25)
-                _readyNextScreen.postValue(_readyNextScreen.value?.copy(progress = addProgress(progress)))
-            }
+        while (readyNextScreen.value?.progress != 100) {
+            delay(20)
+            updateReadyNextScreen(_readyNextScreen.value?.copy(
+                progress = readyNextScreen.value?.progress?.plus(1) ?: 101
+            ))
         }
     }
 
-    private fun addProgress(value: Int) = (value + 1)
 
     companion object {
         @Suppress("UNCHECKED_CAST")
