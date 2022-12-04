@@ -7,7 +7,9 @@ import ru.dashkevich.viewapp.data.api.movies.model.TypesTopFilms
 
 class MoviesRepository(private val moviesApi: MoviesService) {
 
-    fun getTopFilms(type: TypesTopFilms, numberPage: Int): Flow<Movies> =
-        moviesApi.getTopFilms(type = type.name, page = numberPage)
+    fun getTopFilms(
+        type: TypesTopFilms = TypesTopFilms.TOP_250_BEST_FILMS,
+        numberPage: Int = 1
+    ): Flow<Movies> = moviesApi.getTopFilms(type = type.name, page = numberPage)
 
 }
