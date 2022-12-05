@@ -17,10 +17,10 @@ interface MoviesService {
         "X-API-KEY: 9ab8563f-6aae-42ff-9781-0dda57cae1ff"
     )
     @GET("v2.2/films/top")
-    fun getTopFilms(
+    suspend fun getTopFilms(
         @Query("type") type: String,
         @Query("page") page: Int
-    ): Flow<Movies>
+    ): Movies
 
 
 }

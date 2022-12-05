@@ -7,12 +7,13 @@ import ru.dashkevich.viewapp.common.EventHandler
 import ru.dashkevich.viewapp.data.repository.MoviesRepository
 import ru.dashkevich.viewapp.screens.main.library.model.LibraryEvent
 import ru.dashkevich.viewapp.screens.main.library.model.LibraryState
+import ru.dashkevich.viewapp.screens.main.library.model.ScreenStatus
 
 class LibraryViewModel(private val moviesRepository: MoviesRepository) : ViewModel(),
     EventHandler<LibraryEvent> {
 
-    private val _libraryState: MutableLiveData<LibraryState> = MutableLiveData(LibraryState())
-    val libraryState: LiveData<LibraryState> = _libraryState
+    private val _viewState: MutableLiveData<LibraryState> = MutableLiveData(LibraryState())
+    val viewState: LiveData<LibraryState> = _viewState
 
 
     override fun processingEvent(event: LibraryEvent) {
@@ -20,15 +21,33 @@ class LibraryViewModel(private val moviesRepository: MoviesRepository) : ViewMod
             LibraryEvent.RequestResultClicked -> {
                 requestResultClicked()
             }
-            else -> {}
+            LibraryEvent.LeavingScreen -> {
+                leavingScreen()
+            }
         }
+    }
+
+    private fun leavingScreen() {
+        _viewState.postValue(LibraryState())
     }
 
 
     private fun requestResultClicked() {
         viewModelScope.launch(Dispatchers.IO) {
-            moviesRepository.getTopFilms().collect { movies ->
-                _libraryState.postValue(_libraryState.value?.copy(movies = movies))
+            moviesRepository.getTopFilms().onSuccess { movies ->
+                _viewState.postValue(
+                    viewState.value?.copy(
+                        movies = movies,
+                        screenStatus = ScreenStatus.Success
+                    )
+                )
+            }.onFailure {
+                _viewState.postValue(
+                    viewState.value?.copy(
+                        screenStatus = ScreenStatus.Error,
+                        errorMessage = it.message.toString()
+                    )
+                )
             }
         }
     }
