@@ -19,16 +19,4 @@ class LoginViewModel(private val dataStoreRepository: DataStoreRepository) : Vie
         }
     }
 
-    companion object {
-        @Suppress("UNCHECKED_CAST")
-        class Factory(private val repository: DataStoreRepository) : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-                    return LoginViewModel(repository) as T
-                }
-                throw IllegalAccessException("LoginViewModel class not found!")
-            }
-        }
-    }
-
 }

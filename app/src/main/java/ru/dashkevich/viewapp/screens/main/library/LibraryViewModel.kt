@@ -52,20 +52,4 @@ class LibraryViewModel(private val moviesRepository: MoviesRepository) : ViewMod
         }
     }
 
-
-    companion object {
-
-        @Suppress("UNCHECKED_CAST")
-        class Factory(private val moviesRepository: MoviesRepository) : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                if (modelClass.isAssignableFrom(LibraryViewModel::class.java)) {
-                    return LibraryViewModel(moviesRepository) as T
-                }
-                throw IllegalAccessException("LibraryViewModel class not found!")
-            }
-
-        }
-
-    }
-
 }

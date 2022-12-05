@@ -1,12 +1,10 @@
 package ru.dashkevich.viewapp.screens.splash
 
 import androidx.lifecycle.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.dashkevich.viewapp.data.repository.DataStoreRepository
 import ru.dashkevich.viewapp.util.log.logE
-import ru.dashkevich.viewapp.util.log.logI
 
 data class ReadyNextScreen(
     var progress: Int = 0,
@@ -58,23 +56,5 @@ class SplashViewModel(private val dataStoreRepository: DataStoreRepository) : Vi
                 )
             )
         }
-    }
-
-
-    companion object {
-        @Suppress("UNCHECKED_CAST")
-        class Factory(private val repository: DataStoreRepository) : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                if (modelClass.isAssignableFrom(SplashViewModel::class.java)) {
-                    return SplashViewModel(repository) as T
-                }
-                throw IllegalAccessException("SplashViewModel class not found!")
-            }
-        }
-    }
-
-
-    override fun onCleared() {
-        super.onCleared()
     }
 }

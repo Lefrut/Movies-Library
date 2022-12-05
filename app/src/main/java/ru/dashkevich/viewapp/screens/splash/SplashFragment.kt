@@ -1,39 +1,20 @@
 package ru.dashkevich.viewapp.screens.splash
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.dashkevich.viewapp.R
-import ru.dashkevich.viewapp.StartActivity
 import ru.dashkevich.viewapp.common.Binding
-import ru.dashkevich.viewapp.data.repository.DataStoreRepository
 import ru.dashkevich.viewapp.databinding.FragmentSplashBinding
-import ru.dashkevich.viewapp.util.constants.dataStore
-import ru.dashkevich.viewapp.util.log.logE
-import ru.dashkevich.viewapp.util.log.logI
-import ru.dashkevich.viewapp.util.ui.toast
 
 class SplashFragment : Fragment(), Binding<FragmentSplashBinding> {
 
-    private lateinit var viewModel: SplashViewModel
+    private val viewModel by viewModel<SplashViewModel>()
     override var _binding: FragmentSplashBinding? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(
-            this,
-            SplashViewModel.Companion.Factory(
-                DataStoreRepository(requireContext().dataStore)
-            )
-        )[SplashViewModel::class.java]
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
