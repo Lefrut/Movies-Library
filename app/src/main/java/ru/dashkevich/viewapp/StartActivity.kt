@@ -1,14 +1,13 @@
 package ru.dashkevich.viewapp
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import ru.dashkevich.viewapp.databinding.ActivityStartBinding
-import ru.dashkevich.viewapp.util.log.logE
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+import ru.dashkevich.viewapp.di.*
 
 class StartActivity : AppCompatActivity() {
 
@@ -18,8 +17,15 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
-        val navHost = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        val navHost =
+            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
         navController = navHost.navController
+
+        startKoin {
+            androidLogger()
+            androidContext(this@StartActivity)
+            modules(appModules + repositoryModule + viewModelModule)
+        }
 
 
     }

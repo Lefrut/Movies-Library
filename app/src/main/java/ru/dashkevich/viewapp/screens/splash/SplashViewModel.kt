@@ -28,7 +28,7 @@ class SplashViewModel(private val dataStoreRepository: DataStoreRepository) : Vi
         splashScreenLoading()
     }
 
-    private fun splashScreenLoading(){
+    private fun splashScreenLoading() {
         viewModelScope.launch {
             dataStoreRepository.getOptionRememberUser().onSuccess { data ->
                 data.collect {
@@ -45,16 +45,18 @@ class SplashViewModel(private val dataStoreRepository: DataStoreRepository) : Vi
     }
 
     @Synchronized
-    fun updateReadyNextScreen(readyNextScreen: ReadyNextScreen?){
+    fun updateReadyNextScreen(readyNextScreen: ReadyNextScreen?) {
         _readyNextScreen.postValue(readyNextScreen!!)
     }
 
     private suspend fun startProgressBar() {
         while (readyNextScreen.value?.progress != 100) {
             delay(20)
-            updateReadyNextScreen(_readyNextScreen.value?.copy(
-                progress = readyNextScreen.value?.progress?.plus(1) ?: 101
-            ))
+            updateReadyNextScreen(
+                _readyNextScreen.value?.copy(
+                    progress = readyNextScreen.value?.progress?.plus(1) ?: 101
+                )
+            )
         }
     }
 
