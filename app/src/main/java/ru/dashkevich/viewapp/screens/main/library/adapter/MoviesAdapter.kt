@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import ru.dashkevich.viewapp.R
 import ru.dashkevich.viewapp.data.api.movies.model.Film
 
@@ -32,6 +33,7 @@ class MoviesAdapter(private var films: List<Film> = emptyList())
             film.apply {
                 vTitle.text = nameRu
                 vRating.text = rating
+                vImage.load(posterUrl)
             }
         }
     }

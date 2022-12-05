@@ -3,7 +3,7 @@ package ru.dashkevich.viewapp.screens.main.library
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.dashkevich.viewapp.R
 import ru.dashkevich.viewapp.data.api.movies.util.moviesApi
@@ -17,15 +17,8 @@ import ru.dashkevich.viewapp.util.ui.toast
 class LibraryFragment : Fragment(R.layout.fragment_library) {
 
     private lateinit var binding: FragmentLibraryBinding
-    private lateinit var viewModel: LibraryViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(
-            this,
-            LibraryViewModel
-                .Companion.Factory(MoviesRepository(moviesApi = moviesApi))
-        )[LibraryViewModel::class.java]
+    private val viewModel: LibraryViewModel by viewModels {
+        LibraryViewModel.Companion.Factory(MoviesRepository(moviesApi = moviesApi))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
