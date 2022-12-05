@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import ru.dashkevich.viewapp.R
 import ru.dashkevich.viewapp.data.api.movies.util.moviesApi
 import ru.dashkevich.viewapp.data.repository.MoviesRepository
@@ -29,7 +29,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
 
         binding.recyclerView.apply {
             adapter = moviesAdapter
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = GridLayoutManager(requireContext(),2)
         }
 
         viewModel.viewState.observe(viewLifecycleOwner) { libraryValue ->
