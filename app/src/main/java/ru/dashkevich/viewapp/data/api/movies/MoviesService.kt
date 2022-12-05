@@ -16,7 +16,7 @@ interface MoviesService {
         "accept: application/json",
         "X-API-KEY: 9ab8563f-6aae-42ff-9781-0dda57cae1ff"
     )
-    @GET("/v2.2/films/top")
+    @GET("v2.2/films/top")
     fun getTopFilms(
         @Query("type") type: String,
         @Query("page") page: Int

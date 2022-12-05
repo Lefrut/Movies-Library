@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.dashkevich.viewapp.data.api.movies.MoviesService
 
 
-const val MOVIE_URL = "https://kinopoiskapiunofficial.tech/api"
+const val MOVIE_URL = "https://kinopoiskapiunofficial.tech/api/"
 
 
 val retrofit: Retrofit by lazy {
