@@ -5,17 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ru.dashkevich.viewapp.databinding.FragmentRegisterBinding
-import ru.dashkevich.viewapp.util.constants.USER_DATA
-import ru.dashkevich.viewapp.util.constants.USER_LOGIN
-import ru.dashkevich.viewapp.util.constants.USER_PASSWORD
-import ru.dashkevich.viewapp.util.log.logE
-import ru.dashkevich.viewapp.util.ui.toast
+import ru.dashkevich.viewapp.utility.constants.USER_LOGIN
+import ru.dashkevich.viewapp.utility.constants.USER_PASSWORD
+import ru.dashkevich.viewapp.utility.log.logE
 
 
 class RegisterFragment : Fragment() {

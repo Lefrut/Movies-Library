@@ -1,4 +1,4 @@
-package ru.dashkevich.viewapp.util.constants
+package ru.dashkevich.viewapp.utility.constants
 
 
 

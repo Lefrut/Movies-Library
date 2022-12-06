@@ -10,7 +10,7 @@ import ru.dashkevich.viewapp.databinding.FragmentLibraryBinding
 import ru.dashkevich.viewapp.screens.main.library.adapter.MoviesAdapter
 import ru.dashkevich.viewapp.screens.main.library.model.LibraryEvent
 import ru.dashkevich.viewapp.screens.main.library.model.ScreenStatus
-import ru.dashkevich.viewapp.util.ui.toast
+import ru.dashkevich.viewapp.utility.ui.toast
 
 class LibraryFragment : Fragment(R.layout.fragment_library) {
 

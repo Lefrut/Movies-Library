@@ -17,7 +17,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.dashkevich.viewapp.data.api.movies.MoviesService
 import ru.dashkevich.viewapp.data.api.movies.util.MOVIE_URL
-import ru.dashkevich.viewapp.util.constants.DATASTORE_FILE
+import ru.dashkevich.viewapp.utility.constants.DATASTORE_FILE
 
 
 val retrofitModule = module {

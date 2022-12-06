@@ -10,10 +10,10 @@ import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.dashkevich.viewapp.common.Binding
 import ru.dashkevich.viewapp.databinding.FragmentLoginBinding
-import ru.dashkevich.viewapp.util.constants.USER_LOGIN
-import ru.dashkevich.viewapp.util.constants.USER_PASSWORD
-import ru.dashkevich.viewapp.util.log.logE
-import ru.dashkevich.viewapp.util.ui.toast
+import ru.dashkevich.viewapp.utility.constants.USER_LOGIN
+import ru.dashkevich.viewapp.utility.constants.USER_PASSWORD
+import ru.dashkevich.viewapp.utility.log.logE
+import ru.dashkevich.viewapp.utility.ui.toast
 
 val REMEMBER_USER_KEY = booleanPreferencesKey("remember_user")
 
@@ -59,7 +59,7 @@ class LoginFragment : Fragment(), Binding<FragmentLoginBinding> {
                 }
             }
 
-            checkBoxRememberUser.setOnCheckedChangeListener(){ _, isChecked ->
+            checkBoxRememberUser.setOnCheckedChangeListener() { _, isChecked ->
                 viewModel.addOptionRememberUser(isChecked)
             }
 
@@ -77,12 +77,9 @@ class LoginFragment : Fragment(), Binding<FragmentLoginBinding> {
     }
 
 
-
     private fun loginClicked(login: String = "", password: String = "") {
-        val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment(
-            login = login,
-            password = password
-        )
+        val action = LoginFragmentDirections
+            .actionLoginFragmentToRegisterFragment(login, password)
         findNavController().navigate(action)
     }
 

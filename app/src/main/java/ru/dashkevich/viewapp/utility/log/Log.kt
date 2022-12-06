@@ -1,4 +1,4 @@
-package ru.dashkevich.viewapp.util.log
+package ru.dashkevich.viewapp.utility.log
 
 import android.util.Log
 

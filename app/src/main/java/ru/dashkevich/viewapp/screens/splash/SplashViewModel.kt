@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.dashkevich.viewapp.data.repository.DataStoreRepository
-import ru.dashkevich.viewapp.util.log.logE
+import ru.dashkevich.viewapp.utility.log.logE
 
 data class ReadyNextScreen(
     var progress: Int = 0,

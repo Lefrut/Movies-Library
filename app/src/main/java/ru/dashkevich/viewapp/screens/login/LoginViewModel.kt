@@ -4,8 +4,8 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.dashkevich.viewapp.data.repository.DataStoreRepository
-import ru.dashkevich.viewapp.util.log.logE
-import ru.dashkevich.viewapp.util.log.logI
+import ru.dashkevich.viewapp.utility.log.logE
+import ru.dashkevich.viewapp.utility.log.logI
 
 class LoginViewModel(private val dataStoreRepository: DataStoreRepository) : ViewModel() {
 

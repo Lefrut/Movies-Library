@@ -1,4 +1,4 @@
-package ru.dashkevich.viewapp.util.ui
+package ru.dashkevich.viewapp.utility.ui
 
 import android.content.Context
 import android.widget.Toast
