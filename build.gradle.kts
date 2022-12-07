@@ -5,9 +5,9 @@ buildscript {
         google()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.3.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
+        classpath(Dependencies.ClassPath.gradlePlugin)
+        classpath(Dependencies.ClassPath.kotlinGradlePlugin)
+        classpath(Dependencies.ClassPath.navigationSafeArgsPlugin)
     }
 }
 

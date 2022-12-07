@@ -1,22 +1,22 @@
 plugins {
-    id("com.android.application")
-    id("androidx.navigation.safeargs")
-    kotlin("android")
+    id(Dependencies.Plugins.application)
+    id(Dependencies.Plugins.navigationSafeArgs)
+    kotlin(Dependencies.Plugins.kotlinAndroid)
 
 }
 
 android {
     namespace = "ru.dashkevich.viewapp"
-    compileSdk = 33
+    compileSdk = Config.compileSdk
 
     defaultConfig {
-        applicationId = "ru.dashkevich.viewapp"
-        minSdk = 25
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = Config.applicationId
+        minSdk = Config.minSdk
+        targetSdk = Config.targetSdk
+        versionCode = Config.versionCode
+        versionName = Config.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = Config.androidTestInstrumentation
     }
 
     buildTypes {
@@ -43,40 +43,39 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
-
+    //Android
+    implementation(Dependencies.Android.coreKtx)
+    implementation(Dependencies.Android.appCompat)
+    implementation(Dependencies.Android.constraintLayout)
+    implementation(Dependencies.Android.legacySupportV4)
+    implementation(Dependencies.Android.lifecycleLivedata)
+    implementation(Dependencies.Android.lifecycleViewModel)
     //Fragments
-    implementation("androidx.fragment:fragment-ktx:1.5.4")
-
+    implementation(Dependencies.Android.fragment)
     //MaterialComponents
-    implementation("com.google.android.material:material:1.7.0")
-
+    implementation(Dependencies.Android.material)
     //Jetpack Navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
+    implementation(Dependencies.Android.navigationFragmentKtx)
+    implementation(Dependencies.Android.navigationUIKtx)
+    //Android Test
+    testImplementation(Dependencies.AndroidTest.junit)
+    androidTestImplementation(Dependencies.AndroidTest.androidJunit)
+    androidTestImplementation(Dependencies.AndroidTest.espresso)
+
 
     //DataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
-    implementation("androidx.datastore:datastore-core:1.0.0")
+    implementation(Dependencies.Other.dataStorePreferences)
+    implementation(Dependencies.Other.dataStoreCore)
 
     //Internet
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.okhttp3:okhttp-bom:4.10.0")
+    implementation(Dependencies.Other.retrofit)
+    implementation(Dependencies.Other.retrofitConverter)
+    implementation(Dependencies.Other.okHttp)
 
     //Images & coil
-    implementation("io.coil-kt:coil:2.2.2")
+    implementation(Dependencies.Other.coil)
 
     //DI Koin
-    implementation("io.insert-koin:koin-core:3.2.2")
-    implementation("io.insert-koin:koin-android:3.3.0")
+    implementation(Dependencies.Other.koin)
+    implementation(Dependencies.Other.koinAndroid)
 }
