@@ -32,6 +32,7 @@ object Dependencies {
             const val lifecycle = "2.5.1"
             const val navigation = "2.5.3"
             const val fragment = "1.5.4"
+            const val viewPager = "1.0.0"
         }
 
         const val coreKtx = "androidx.core:core-ktx:${Version.coreKtx}"
@@ -44,7 +45,7 @@ object Dependencies {
         const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Version.navigation}"
         const val navigationUIKtx = "androidx.navigation:navigation-ui-ktx:${Version.navigation}"
         const val fragment = "androidx.fragment:fragment-ktx:${Version.fragment}"
-
+        const val viewPager = "androidx.viewpager2:viewpager2:${Version.viewPager}"
     }
 
     object AndroidTest {

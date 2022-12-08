@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    implementation(Dependencies.Android.viewPager)
     implementation(Dependencies.Android.constraintLayout)
     implementation(Dependencies.Android.legacySupportV4)
     implementation(Dependencies.Android.lifecycleLivedata)
