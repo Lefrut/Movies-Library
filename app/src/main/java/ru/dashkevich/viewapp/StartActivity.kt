@@ -7,6 +7,8 @@ import androidx.navigation.fragment.NavHostFragment
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import ru.dashkevich.data.di.dataModules
+import ru.dashkevich.domain.di.domainModules
 import ru.dashkevich.viewapp.di.*
 
 class StartActivity : AppCompatActivity() {
@@ -17,14 +19,14 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
-        val navHost =
-            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        val navHost = supportFragmentManager
+            .findFragmentById(R.id.fragment_container) as NavHostFragment
         navController = navHost.navController
 
         startKoin {
             androidLogger()
             androidContext(this@StartActivity)
-            modules(appModules + repositoryModule + viewModelModule)
+            modules(dataModules + domainModules + viewModelModule)
         }
 
 

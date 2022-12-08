@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.ViewApp.MainHeader" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textSize">50sp</item>
+    </style>
+</resources>

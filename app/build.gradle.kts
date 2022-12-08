@@ -43,6 +43,12 @@ android {
 
 dependencies {
 
+    implementation(project(":features:library"))
+    implementation(project(":features:unknown"))
+    implementation(project(":features:profile"))
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
+
     //Android
     implementation(Dependencies.Android.coreKtx)
     implementation(Dependencies.Android.appCompat)
@@ -57,6 +63,7 @@ dependencies {
     //Jetpack Navigation
     implementation(Dependencies.Android.navigationFragmentKtx)
     implementation(Dependencies.Android.navigationUIKtx)
+    implementation(project(mapOf("path" to ":features:authorization")))
     //Android Test
     testImplementation(Dependencies.AndroidTest.junit)
     androidTestImplementation(Dependencies.AndroidTest.androidJunit)
