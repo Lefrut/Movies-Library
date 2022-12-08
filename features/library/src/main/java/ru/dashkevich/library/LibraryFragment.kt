@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.dashkevich.library.adapter.MoviesAdapter
 import ru.dashkevich.library.databinding.FragmentLibraryBinding
-import ru.dashkevich.library.model.LibraryEvent
-import ru.dashkevich.library.model.ScreenStatus
+import ru.dashkevich.library.model.mvi.LibraryEvent
+import ru.dashkevich.library.model.mvi.ScreenStatus
 import ru.dashkevich.utility.ui.toast
 
 class LibraryFragment : Fragment(R.layout.fragment_library) {
@@ -21,11 +21,16 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLibraryBinding.bind(view)
 
-        val moviesAdapter = MoviesAdapter()
+        val moviesAdapter = MoviesAdapter(
+            onSavedClick = { saved, index ->
+                viewModel.processingEvent(LibraryEvent.SavedFilmClicked(saved, index))
+            }
+        )
+
 
         binding.recyclerView.apply {
             adapter = moviesAdapter
-            layoutManager = GridLayoutManager(requireContext(),2)
+            layoutManager = GridLayoutManager(requireContext(), 2)
         }
 
         viewModel.viewState.observe(viewLifecycleOwner) { libraryValue ->
@@ -33,7 +38,6 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
                 when (screenStatus) {
                     ScreenStatus.Success -> {
                         moviesAdapter.setData(movies.films)
-                        toast("Success", requireContext())
                     }
                     ScreenStatus.Error -> {
 

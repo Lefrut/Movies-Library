@@ -1,4 +1,4 @@
-package ru.dashkevich.library.model
+package ru.dashkevich.library.model.mvi
 
 interface EventHandler<T> {
 
