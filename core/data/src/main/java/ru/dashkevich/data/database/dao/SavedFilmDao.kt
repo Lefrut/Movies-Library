@@ -3,6 +3,7 @@ package ru.dashkevich.data.database.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 import ru.dashkevich.data.database.entity.SavedFilm
@@ -11,11 +12,11 @@ import ru.dashkevich.data.database.entity.SavedFilm
 interface SavedFilmDao {
 
     @Query("SELECT * FROM saved_film")
-    fun observeSavedFilms(): Flow<SavedFilm>
+    fun observeSavedFilms(): Flow<List<SavedFilm>>
     @Query("SELECT * FROM saved_film")
-    suspend fun getSavedFilms(): SavedFilm
+    suspend fun getSavedFilms(): List<SavedFilm>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addSavedFilms(savedFilm: List<SavedFilm>)
 
     @Delete

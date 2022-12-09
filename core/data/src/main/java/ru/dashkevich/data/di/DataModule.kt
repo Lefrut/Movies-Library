@@ -59,7 +59,7 @@ val roomModule = module {
         Room.databaseBuilder(
             get<Context>(),
             AppDatabase::class.java,
-            "movies-appV2.2"
+            "movies-V100"
         ).build()
     }
 }

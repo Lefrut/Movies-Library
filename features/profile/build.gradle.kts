@@ -38,6 +38,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":features:library"))
+    implementation(project(":core:domain"))
+
     implementation(Dependencies.Android.viewPager)
     implementation(Dependencies.Android.constraintLayout)
     implementation(Dependencies.Android.legacySupportV4)

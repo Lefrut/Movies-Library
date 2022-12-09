@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import ru.dashkevich.profile.adapter.ProfileTabsAdapter
 import ru.dashkevich.profile.databinding.FragmentProfileBinding
-import ru.dashkevich.profile.tabs.SavedFragment
-import ru.dashkevich.profile.tabs.SettingsFragment
+import ru.dashkevich.profile.tabs.saved.SavedFragment
+import ru.dashkevich.profile.tabs.settings.SettingsFragment
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 

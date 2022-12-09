@@ -37,17 +37,17 @@ class LibraryViewModel(
     }
 
     private fun savedFilmClicked(savedState: Boolean, indexFilm: Int) {
-
         viewModelScope.launch(Dispatchers.IO) {
             val pageCount = _viewState.value?.movies?.pageCount ?: 1
             val films = _viewState.value?.movies?.films?.toMutableList()
             val unmodifiedFilm = films?.get(indexFilm)
             if (unmodifiedFilm != null) {
                 val modifiedFilm = with(unmodifiedFilm) {
-                    PresentedFilm(title, posterUrl, rating, savedState)
+                    PresentedFilm(id, title, posterUrl, rating, savedState)
                 }
                 films[indexFilm] = modifiedFilm
-                roomRepository.addSavedFilms(listOf(modifiedFilm))
+                if(savedState) roomRepository.addSavedFilms(listOf(modifiedFilm))
+                else roomRepository.deleteSavedFilms(listOf(modifiedFilm))
                 _viewState.postValue(
                     viewState.value?.copy(
                         movies = PresentedMovies(
@@ -69,9 +69,24 @@ class LibraryViewModel(
     private fun requestResultClicked() {
         viewModelScope.launch(Dispatchers.IO) {
             moviesRepository.getTopFilms().onSuccess { movies ->
+                val savedFilms = roomRepository.getSavedFilms()
+                val presentedFilms: MutableList<PresentedFilm> = mutableListOf()
+                movies.films.forEach { films ->
+                    var saved = false
+                    savedFilms.forEach { savedFilms ->
+                        if (films.id == savedFilms.id) {
+                            saved = true
+                        }
+                    }
+                    presentedFilms += films.copy(saved = saved)
+                }
+
                 _viewState.postValue(
                     viewState.value?.copy(
-                        movies = movies,
+                        movies = PresentedMovies(
+                            films = presentedFilms,
+                            pageCount = movies.pageCount
+                        ),
                         screenStatus = ScreenStatus.Success
                     )
                 )

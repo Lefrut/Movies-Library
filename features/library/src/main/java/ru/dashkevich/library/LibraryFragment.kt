@@ -24,6 +24,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         val moviesAdapter = MoviesAdapter(
             onSavedClick = { saved, index ->
                 viewModel.processingEvent(LibraryEvent.SavedFilmClicked(saved, index))
+
             }
         )
 

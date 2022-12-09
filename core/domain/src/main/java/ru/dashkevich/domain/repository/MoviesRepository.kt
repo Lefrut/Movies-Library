@@ -1,7 +1,6 @@
 package ru.dashkevich.domain.repository
 
 import ru.dashkevich.data.api.MoviesService
-import ru.dashkevich.data.api.model.Movies
 import ru.dashkevich.data.api.model.TypesTopFilms
 import ru.dashkevich.domain.model.PresentedFilm
 import ru.dashkevich.domain.model.PresentedMovies
@@ -16,6 +15,7 @@ class MoviesRepository(private val moviesApi: MoviesService) {
         return runCatching { PresentedMovies(
             films = topMovies.films.map {
                 PresentedFilm(
+                    id = it.filmId,
                     title = it.nameRu,
                     posterUrl = it.posterUrl,
                     rating = it.rating

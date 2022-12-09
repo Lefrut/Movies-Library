@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 class SavedFilm(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Int,
+    val id: Int = 0,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "poster_url")

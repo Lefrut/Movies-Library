@@ -8,6 +8,7 @@ data class PresentedMovies(
 
 
 data class PresentedFilm(
+    val id: Int,
     val title: String,
     val posterUrl: String,
     val rating: String,

@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import ru.dashkevich.data.di.dataModules
 import ru.dashkevich.domain.di.domainModules
 import ru.dashkevich.viewapp.di.*
@@ -14,6 +15,11 @@ import ru.dashkevich.viewapp.di.*
 class StartActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopKoin()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

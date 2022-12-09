@@ -1,7 +1,6 @@
 package ru.dashkevich.library.adapter
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +9,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
-import ru.dashkevich.data.api.model.Film
 import ru.dashkevich.domain.model.PresentedFilm
 import ru.dashkevich.library.R
-import ru.dashkevich.library.model.mvi.LibraryEvent
 
 class MoviesAdapter(
     private var films: List<PresentedFilm> = emptyList(),
-    val onSavedClick: (Boolean, Int) -> Unit
+    private var onSavedClick: (Boolean, Int) -> Unit = { _, _ -> }
 ) : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
     class MoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -56,6 +53,12 @@ class MoviesAdapter(
     @SuppressLint("NotifyDataSetChanged")
     fun setData(films: List<PresentedFilm>) {
         this.films = films
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setOnSaveClickListener(onSavedClick: (Boolean, Int) -> Unit){
+        this.onSavedClick = onSavedClick
         notifyDataSetChanged()
     }
 
