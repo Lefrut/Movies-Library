@@ -1,15 +1,16 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
 }
 
 android {
     namespace = "ru.dashkevich.domain"
-    compileSdk = 32
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -42,6 +43,12 @@ dependencies {
     //DataStore
     implementation(Dependencies.Other.dataStorePreferences)
     implementation(Dependencies.Other.dataStoreCore)
+
+    implementation(Dependencies.Android.roomRuntime)
+    kapt(Dependencies.Android.roomCompiler)
+    implementation(Dependencies.Android.roomCoroutines)
+    implementation(Dependencies.Android.roomPaging)
+    implementation(Dependencies.Android.paging3)
 
     //DI Koin
     implementation(Dependencies.Other.koin)

@@ -33,6 +33,8 @@ object Dependencies {
             const val navigation = "2.5.3"
             const val fragment = "1.5.4"
             const val viewPager = "1.0.0"
+            const val room = "2.4.3"
+            const val paging = "3.1.1"
         }
 
         const val coreKtx = "androidx.core:core-ktx:${Version.coreKtx}"
@@ -46,6 +48,13 @@ object Dependencies {
         const val navigationUIKtx = "androidx.navigation:navigation-ui-ktx:${Version.navigation}"
         const val fragment = "androidx.fragment:fragment-ktx:${Version.fragment}"
         const val viewPager = "androidx.viewpager2:viewpager2:${Version.viewPager}"
+        const val roomRuntime = "androidx.room:room-runtime:${Version.room}"
+        const val roomCompiler = "androidx.room:room-compiler:${Version.room}"
+        const val roomCoroutines = "androidx.room:room-ktx:${Version.room}"
+        const val roomPaging = "androidx.room:room-paging:${Version.room}"
+        const val paging3 = "androidx.paging:paging-runtime:${Version.paging}"
+
+
     }
 
     object AndroidTest {
@@ -86,6 +95,7 @@ object Dependencies {
 
         const val koin = "io.insert-koin:koin-core:${Version.koin}"
         const val koinAndroid = "io.insert-koin:koin-android:${Version.koinAndroid}"
+
 
     }
 

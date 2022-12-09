@@ -8,7 +8,7 @@ import ru.dashkevich.library.LibraryViewModel
 
 val viewModelModule = module {
 
-    viewModel { LibraryViewModel(get()) }
+    viewModel { LibraryViewModel(get(), get()) }
     viewModel { LoginViewModel(get()) }
     viewModel { SplashViewModel(get()) }
 

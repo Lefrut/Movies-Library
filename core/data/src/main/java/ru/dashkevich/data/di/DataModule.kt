@@ -5,9 +5,9 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
+import androidx.room.Room
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -16,6 +16,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.dashkevich.data.api.MoviesService
+import ru.dashkevich.data.database.AppDatabase
 import ru.dashkevich.utility.constants.DATASTORE_FILE
 import ru.dashkevich.utility.constants.MOVIE_URL
 
@@ -53,6 +54,16 @@ val dataStoreModule = module {
 
 }
 
+val roomModule = module {
+    single<AppDatabase> {
+        Room.databaseBuilder(
+            get<Context>(),
+            AppDatabase::class.java,
+            "movies-appV2.2"
+        ).build()
+    }
+}
+
 val dataModules = module {
-    includes(dataStoreModule, retrofitModule)
+    includes(dataStoreModule, retrofitModule, roomModule)
 }

@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+
 }
 
 android {
@@ -50,6 +52,13 @@ dependencies {
     implementation(Dependencies.Other.retrofit)
     implementation(Dependencies.Other.retrofitConverter)
     implementation(Dependencies.Other.okHttp)
+
+    implementation(Dependencies.Android.roomRuntime)
+    kapt(Dependencies.Android.roomCompiler)
+    implementation(Dependencies.Android.roomCoroutines)
+    implementation(Dependencies.Android.roomPaging)
+    implementation(Dependencies.Android.paging3)
+
 
     //DI Koin
     implementation(Dependencies.Other.koin)
