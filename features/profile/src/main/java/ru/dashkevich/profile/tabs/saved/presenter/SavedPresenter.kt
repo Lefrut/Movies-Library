@@ -41,7 +41,7 @@ class SavedPresenter(private val roomRepository: RoomRepository) : PresenterSave
             withContext(Dispatchers.Main) {
                 showSavedMovies(adapter)
             }
-            delay(500)
+            delay(200)
             getSavedMovies()
             withContext(Dispatchers.Main) {
                 showSavedMovies(adapter)
