@@ -58,7 +58,11 @@ dependencies {
     implementation(Dependencies.Other.koin)
     implementation(Dependencies.Other.koinAndroid)
 
+    //Coil
     implementation(Dependencies.Other.coil)
+
+    //Paging3
+    implementation(Dependencies.Android.paging3)
 
 
 

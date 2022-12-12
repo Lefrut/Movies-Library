@@ -19,12 +19,5 @@
         android:layout_weight="1"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/request_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Запросить результат"
-        android:layout_marginTop="16dp"/>
-
 
 </LinearLayout>
