@@ -13,12 +13,10 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.dashkevich.domain.model.PresentedFilm
 import ru.dashkevich.library.adapter.FilmsComparator
-import ru.dashkevich.library.adapter.MoviesAdapter
 import ru.dashkevich.library.adapter.PagingFilmsAdapter
 import ru.dashkevich.library.databinding.FragmentLibraryBinding
 import ru.dashkevich.library.model.mvi.LibraryEvent
 import ru.dashkevich.library.model.mvi.ScreenStatus
-import ru.dashkevich.utility.ui.toast
 
 class LibraryFragment : Fragment(R.layout.fragment_library) {
 
@@ -60,9 +58,9 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
                 when (screenStatus) {
                     ScreenStatus.Success -> {
 //                        moviesAdapter.setData(movies.films)
-//                        CoroutineScope(Dispatchers.Main).launch {
-//                            pagingFilmsAdapter.submitData(pagingData = pagingMoviesData)
-//                        }
+                        CoroutineScope(Dispatchers.Main).launch {
+                            pagingFilmsAdapter.submitData(pagingData = pagingMoviesData)
+                        }
                     }
                     ScreenStatus.Error -> {
 
@@ -81,8 +79,8 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
             }
         }
 
-        lifecycleScope.launch {
-            viewModel.filmsFlow.collectLatest { value: PagingData<PresentedFilm> ->
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.noFilmsFlow.collectLatest { value: PagingData<PresentedFilm> ->
                 pagingFilmsAdapter.submitData(value)
             }
         }
