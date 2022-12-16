@@ -34,6 +34,8 @@ class LibraryViewModel(
 //            }.cachedIn(viewModelScope)
 //    }
 
+
+    //TODO("If created filters")
     @OptIn(FlowPreview::class)
     val filmsFlow: Flow<PagingData<PresentedFilm>> = _viewState.asFlow()
         .flatMapLatest {
@@ -42,8 +44,8 @@ class LibraryViewModel(
 
     val noFilmsFlow: StateFlow<PagingData<PresentedFilm>> =
         moviesRepository.observeTopFilms()
+            .cachedIn(viewModelScope)
             .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
-            //.cachedIn(viewModelScope)
 
 
     override fun processingEvent(event: LibraryEvent) {

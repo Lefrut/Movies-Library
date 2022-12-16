@@ -18,7 +18,7 @@ class UnknownFragment: Fragment(R.layout.fragment_unknown) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentUnknownBinding.bind(view)
-        val url = "https://kinopoiskapiunofficial.tech/"
+        val url = "https://www.imdb.com/"
 
         binding.webView.apply {
             settings.apply {
