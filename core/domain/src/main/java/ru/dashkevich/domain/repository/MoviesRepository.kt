@@ -2,6 +2,7 @@ package ru.dashkevich.domain.repository
 
 import androidx.paging.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.stateIn
 import ru.dashkevich.data.api.MoviesService
 import ru.dashkevich.data.api.model.TypesTopFilms
 import ru.dashkevich.domain.model.PresentedFilm

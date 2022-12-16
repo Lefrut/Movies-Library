@@ -40,8 +40,10 @@ class LibraryViewModel(
             moviesRepository.observeTopFilms()
         }.cachedIn(viewModelScope)
 
-    val noFilmsFlow: Flow<PagingData<PresentedFilm>> =
-        moviesRepository.observeTopFilms().cachedIn(viewModelScope)
+    val noFilmsFlow: StateFlow<PagingData<PresentedFilm>> =
+        moviesRepository.observeTopFilms()
+            .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
+            //.cachedIn(viewModelScope)
 
 
     override fun processingEvent(event: LibraryEvent) {
