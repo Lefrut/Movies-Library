@@ -43,6 +43,9 @@ dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
     implementation(project(":utility"))
+    implementation(project(":navigation"))
+
+
 
 
     implementation(Dependencies.Android.constraintLayout)

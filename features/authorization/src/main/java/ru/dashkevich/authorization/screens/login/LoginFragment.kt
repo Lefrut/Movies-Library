@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.dashkevich.authorization.R
 import ru.dashkevich.authorization.databinding.FragmentLoginBinding
 import ru.dashkevich.utility.constants.USER_LOGIN
 import ru.dashkevich.utility.constants.USER_PASSWORD
@@ -59,9 +60,10 @@ class LoginFragment : Fragment() {
     }
 
     private fun loginClicked(login: String = "", password: String = "") {
-        val action = LoginFragmentDirections
+        /*val action = LoginFragmentDirections
             .actionLoginFragmentToRegisterFragment(login, password)
-        findNavController().navigate(action)
+        findNavController().navigate(action)*/
+       findNavController().navigate(ru.dashkevich.navigation.R.id.action_global_main_nav_graph)
     }
 
     private fun getRegisterValues(): Pair<String, String>? {

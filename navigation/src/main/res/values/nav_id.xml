@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="start_nav_graph" type="id" />
+    <item name="main_nav_graph" type="id" />
+    <item name="tabs_nav_graph" type="id"/>
+    <item name="library" type="id"/>
+    <item name="profile" type="id" />
+    <item name="unknown" type="id" />
+    <item name="main" type="id" />
+    <item name="root_nav_graph" type="id" />
+
+</resources>

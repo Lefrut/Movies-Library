@@ -9,5 +9,7 @@
         android:id="@+id/libraryFragment"
         android:name="ru.dashkevich.library.LibraryFragment"
         android:label="fragment_library"
-        tools:layout="@layout/fragment_library" />
+        tools:layout="@layout/fragment_library">
+
+    </fragment>
 </navigation>

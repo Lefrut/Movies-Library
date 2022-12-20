@@ -41,10 +41,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":navigation"))
     implementation(project("path" to ":utility"))
-    implementation(project("path" to ":features:library"))
-    implementation(project("path" to ":features:unknown"))
-    implementation(project("path" to ":features:profile"))
     implementation(project("path" to ":core:domain"))
     implementation(project("path" to ":core:data"))
 

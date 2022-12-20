@@ -2,8 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/start_nav_graph"
+    android:id="@id/start_nav_graph"
     app:startDestination="@id/splashFragment">
+
     <fragment
         android:id="@+id/splashFragment"
         android:name="ru.dashkevich.authorization.screens.splash.SplashFragment"
@@ -14,11 +15,6 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/start_nav_graph"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_splashFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:popUpTo="@id/start_nav_graph"
-            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -29,6 +25,10 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+
+        <deepLink app:uri="https://ru.dashkevich.authorization/loginFragment" />
+
+
     </fragment>
 
     <fragment
@@ -43,11 +43,6 @@
             android:name="password"
             app:argType="string"/>
     </fragment>
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="ru.dashkevich.authorization.screens.main.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
 
 
 </navigation>

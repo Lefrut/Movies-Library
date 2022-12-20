@@ -1,7 +1,12 @@
 package ru.dashkevich.library
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
@@ -42,12 +47,25 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLibraryBinding.bind(view)
 
+        
+        val menuHost: MenuHost = requireActivity()
 
 //        val moviesAdapter = MoviesAdapter(
 //            onSavedClick = { saved, index ->
 //                viewModel.processingEvent(LibraryEvent.SavedFilmClicked(saved, index))
 //            }
 //        )
+
+        menuHost.addMenuProvider( object : MenuProvider{
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.library_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return true
+            }
+
+        })
 
 
         binding.recyclerView.apply {

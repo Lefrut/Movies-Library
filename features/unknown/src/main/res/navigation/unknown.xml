@@ -2,11 +2,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/unknown"
+    android:id="@id/unknown"
     app:startDestination="@id/unknownFragment">
     <fragment
         android:id="@+id/unknownFragment"
         android:name="com.example.unknown.UnknownFragment"
         android:label="fragment_unknown"
-        tools:layout="@layout/fragment_unknown" />
+        tools:layout="@layout/fragment_unknown">
+        <deepLink app:uri="https://ru.dashkevich.unknown/unknown" />
+    </fragment>
+
+
+
+
 </navigation>

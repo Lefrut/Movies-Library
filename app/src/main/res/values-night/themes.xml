@@ -14,7 +14,9 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Base.Theme.ViewApp" parent="Base.V1.Night.Theme.ViewApp" />
+    <style name="Base.Theme.ViewApp" parent="Base.V1.Night.Theme.ViewApp">
+
+    </style>
 
 
 

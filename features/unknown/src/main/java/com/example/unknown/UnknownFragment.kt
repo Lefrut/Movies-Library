@@ -7,8 +7,10 @@ import android.view.View
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.unknown.databinding.FragmentUnknownBinding
+
 
 class UnknownFragment: Fragment(R.layout.fragment_unknown) {
 
@@ -19,6 +21,8 @@ class UnknownFragment: Fragment(R.layout.fragment_unknown) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentUnknownBinding.bind(view)
         val url = "https://www.imdb.com/"
+
+        //requireActivity().u
 
         binding.webView.apply {
             settings.apply {
@@ -57,6 +61,17 @@ class UnknownFragment: Fragment(R.layout.fragment_unknown) {
 
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.hide()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity).supportActionBar?.show()
+
     }
 
 }

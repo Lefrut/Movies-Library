@@ -21,7 +21,17 @@
     </style>
 
 
-    <style name="Theme.ViewApp" parent="Base.Theme.ViewApp" />
+    <style name="Theme.ViewApp" parent="Base.Theme.ViewApp">
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="android:windowFullscreen">true</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+    </style>
+
+    <style name="Theme.ViewApp.NoActionBar" parent="Theme.ViewApp">
+        <!--        <item name="windowActionBar">false</item>-->
+        <!--        <item name="android:windowFullscreen">true</item>-->
+        <!--        <item name="windowNoTitle">true</item>-->
+    </style>
 
 
 </resources>

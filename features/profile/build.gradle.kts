@@ -40,6 +40,8 @@ android {
 dependencies {
     implementation(project(":features:library"))
     implementation(project(":core:domain"))
+    implementation(project(":navigation"))
+
 
     implementation(Dependencies.Android.viewPager)
     implementation(Dependencies.Android.constraintLayout)
@@ -54,6 +56,8 @@ dependencies {
     //DI Koin
     implementation(Dependencies.Other.koin)
     implementation(Dependencies.Other.koinAndroid)
+
+    implementation("androidx.fragment:fragment-ktx:1.5.5")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.5.1")
