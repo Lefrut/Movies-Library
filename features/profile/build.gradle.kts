@@ -1,15 +1,16 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id(Dependencies.Plugins.library)
+    id(Dependencies.Plugins.navigationSafeArgs)
+    kotlin(Dependencies.Plugins.kotlinAndroid)
 }
 
 android {
     namespace = "ru.dashkevich.profile"
-    compileSdk = 33
+    compileSdk = Config.compileSdk
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = Config.minSdk
+        targetSdk = Config.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -57,13 +58,13 @@ dependencies {
     implementation(Dependencies.Other.koin)
     implementation(Dependencies.Other.koinAndroid)
 
-    implementation("androidx.fragment:fragment-ktx:1.5.5")
+    implementation(Dependencies.Android.fragment)
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    implementation("androidx.preference:preference:1.2.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+
+    implementation(Dependencies.Android.coreKtx)
+    implementation(Dependencies.Android.appCompat)
+    implementation(Dependencies.Android.material)
+    testImplementation(Dependencies.AndroidTest.junit)
+    androidTestImplementation(Dependencies.AndroidTest.androidJunit)
+    androidTestImplementation(Dependencies.AndroidTest.espresso)
 }

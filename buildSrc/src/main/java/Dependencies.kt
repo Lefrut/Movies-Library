@@ -2,16 +2,18 @@ object Dependencies {
 
 
     object Plugins {
+        const val library = "com.android.library"
         const val application = "com.android.application"
         const val kotlinAndroid = "android"
         const val navigationSafeArgs = "androidx.navigation.safeargs"
+        const val kapt = "kapt"
     }
 
     object ClassPath {
 
         object Version {
             const val gradle = "7.3.1"
-            const val kotlin = "1.7.10"
+            const val kotlin = "1.7.20"
             const val navigationSafeArgs = "2.5.3"
         }
 
