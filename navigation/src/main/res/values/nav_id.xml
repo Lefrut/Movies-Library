@@ -8,5 +8,6 @@
     <item name="unknown" type="id" />
     <item name="main" type="id" />
     <item name="root_nav_graph" type="id" />
+    <item name="fragment_container" type="id" />
 
 </resources>

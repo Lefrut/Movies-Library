@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.core.net.toUri
 import androidx.core.view.MenuProvider
 import androidx.navigation.NavController
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -30,6 +33,7 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
+        Thread.sleep(100)
         val navHost = supportFragmentManager
             .findFragmentById(R.id.fragment_container) as NavHostFragment
         navController = navHost.navController
@@ -61,7 +65,7 @@ class StartActivity : AppCompatActivity() {
             modules(dataModules + domainModules + viewModelModule)
         }
 
-
+//    id("org.jetbrains.kotlin.android")
     }
 
     fun updateToolbar(){

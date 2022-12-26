@@ -63,7 +63,7 @@ class LoginFragment : Fragment() {
         /*val action = LoginFragmentDirections
             .actionLoginFragmentToRegisterFragment(login, password)
         findNavController().navigate(action)*/
-       findNavController().navigate(ru.dashkevich.navigation.R.id.action_global_main_nav_graph)
+       findNavController().navigate(ru.dashkevich.navigation.R.id.action_global_main)
     }
 
     private fun getRegisterValues(): Pair<String, String>? {

@@ -45,7 +45,6 @@ dependencies {
 
     implementation(project(":navigation"))
     implementation(project(":features:authorization"))
-    implementation(project(":features:main"))
     implementation(project(":features:library"))
     implementation(project(":features:unknown"))
     implementation(project(":features:profile"))
