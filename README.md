@@ -4,7 +4,6 @@
 
 ## Состояние
 In progress
-Рабочая ветка - toolbar_add
 
 ## Используемые технологии
 - Retrofit
