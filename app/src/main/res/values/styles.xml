@@ -15,20 +15,24 @@
 
 
     <style name="Widget.ViewApp.Button" parent="Widget.MaterialComponents.Button">
-        <item name="color">@color/black</item>
 
     </style>
 
 
     <style name="Widget.ViewApp.EditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="android:width">100dp</item>
+        <item name="android:layout_width">340dp</item>
+    </style>
+
+    <style name="Widget.ViewApp.Button.Auth" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">240dp</item>
+    </style>
+
+    <style name="Widget.ViewApp.TextInputLayout.Auth" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">340dp</item>
     </style>
 
 
 
-    <style name="Widget.ViewApp.TextView" parent="Widget.AppCompat.TextView">
-
-    </style>
 </resources>
 
 

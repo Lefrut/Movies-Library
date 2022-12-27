@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@id/start_nav_graph"
+    android:id="@+id/start_nav_graph"
     app:startDestination="@id/splashFragment">
 
     <fragment
@@ -24,7 +24,12 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment" >
+            <argument
+                android:name="login" />
+            <argument
+                android:name="password" />
+        </action>
 
         <deepLink app:uri="https://ru.dashkevich.authorization/loginFragment" />
 

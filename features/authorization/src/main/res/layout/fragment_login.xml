@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="ru.dashkevich.authorization.screens.login.LoginFragment">
@@ -16,10 +17,9 @@
         android:fontFamily="serif"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/login"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.ViewApp.TextInputLayout.Auth"
         android:layout_marginTop="@dimen/edit_text_top_margin"
         >
 
@@ -27,23 +27,25 @@
             android:id="@+id/login_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""/>
+            android:text=""
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
-        style="@style/Widget.ViewApp.EditText"
-        android:layout_marginTop="@dimen/edit_text_top_margin">
+        style="@style/Widget.ViewApp.TextInputLayout.Auth"
+        android:layout_marginTop="@dimen/edit_text_top_margin"
+        android:gravity="start|center_vertical">
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""/>
+            android:text=""
+            android:maxLines="1"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,10 +58,18 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_button"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login">
+        android:text="@string/login"
+        style="@style/Widget.ViewApp.Button.Auth">
 
     </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/register_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Register"
+        android:textColor="@color/purple_700"/>
 
 </LinearLayout>

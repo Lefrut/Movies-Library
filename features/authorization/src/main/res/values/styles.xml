@@ -29,6 +29,20 @@
     <style name="Widget.ViewApp.TextView" parent="Widget.AppCompat.TextView">
 
     </style>
+
+    <style name="Widget.ViewApp.Button.Auth" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">240dp</item>
+    </style>
+
+    <style name="Widget.ViewApp.TextInputLayout.Auth" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">340dp</item>
+        <item name="editTextStyle">@style/Widget.ViewApp.EditText.Auth</item>
+    </style>
+
+    <style name="Widget.ViewApp.EditText.Auth" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="maxLines">1</item>
+    </style>
+
 </resources>
 
 

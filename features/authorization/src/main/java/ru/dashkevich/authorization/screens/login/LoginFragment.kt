@@ -12,6 +12,7 @@ import ru.dashkevich.authorization.databinding.FragmentLoginBinding
 import ru.dashkevich.utility.constants.USER_LOGIN
 import ru.dashkevich.utility.constants.USER_PASSWORD
 import ru.dashkevich.utility.log.logE
+import kotlin.math.log
 
 class LoginFragment : Fragment() {
 
@@ -54,15 +55,24 @@ class LoginFragment : Fragment() {
 
 
             loginButton.setOnClickListener {
-                loginClicked(loginInput.text.toString(), passwordInput.text.toString())
+                loginClicked()
             }
+
+            registerText.setOnClickListener {
+                registerTextClicked(loginInput.text.toString(), passwordInput.text.toString())
+            }
+
         }
     }
 
-    private fun loginClicked(login: String = "", password: String = "") {
-        /*val action = LoginFragmentDirections
+    private fun registerTextClicked(login: String = "", password: String = ""){
+        val action = LoginFragmentDirections
             .actionLoginFragmentToRegisterFragment(login, password)
-        findNavController().navigate(action)*/
+        findNavController().navigate(action)
+    }
+
+
+    private fun loginClicked() {
        findNavController().navigate(ru.dashkevich.navigation.R.id.action_global_main)
     }
 

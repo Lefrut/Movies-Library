@@ -45,6 +45,10 @@ class RegisterFragment : Fragment() {
             registerButton.setOnClickListener {
 
             }
+
+            haveAccountText.setOnClickListener {
+                haveAccountClicked()
+            }
         }
 
     }
@@ -62,6 +66,10 @@ class RegisterFragment : Fragment() {
         logE("RegisterFragment", "findNavController: ${findNavController()}")
         logE("RegisterFragment", "destination: ${findNavController().previousBackStackEntry?.destination}")
         logE("RegisterFragment", "onStop")
+    }
+
+    private fun haveAccountClicked(){
+        findNavController().popBackStack()
     }
 
 }
