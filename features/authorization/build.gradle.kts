@@ -4,6 +4,7 @@ plugins {
     id(Dependencies.Plugins.library)
     kotlin(Dependencies.Plugins.kotlinAndroid)
     id(Dependencies.Plugins.navigationSafeArgs)
+    id(Dependencies.Plugins.googleServices)
 }
 
 android {
@@ -65,6 +66,12 @@ dependencies {
     //DataStore
     implementation(Dependencies.Other.dataStorePreferences)
     implementation(Dependencies.Other.dataStoreCore)
+
+
+    //Firebase
+    implementation(platform(Dependencies.Other.firebaseBom))
+    implementation(Dependencies.Other.firebaseAnalyticsKtx)
+    implementation(Dependencies.Other.firebaseAuth)
 
     implementation(Dependencies.Android.coreKtx)
     implementation(Dependencies.Android.appCompat)

@@ -2,6 +2,7 @@ plugins {
     id(Dependencies.Plugins.application)
     id(Dependencies.Plugins.navigationSafeArgs)
     kotlin(Dependencies.Plugins.kotlinAndroid)
+    id(Dependencies.Plugins.googleServices)
 
 }
 

@@ -2,7 +2,8 @@ package ru.dashkevich.utility.ui
 
 import android.content.Context
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 
 
-fun toast(message: String, context: Context) =
-    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+fun Fragment.toast(message: String) =
+    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()

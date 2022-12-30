@@ -17,13 +17,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_height="wrap_content"
-        android:hint="@string/login"
+        android:hint="@string/email"
         style="@style/Widget.ViewApp.TextInputLayout.Auth"
         android:layout_marginTop="@dimen/edit_text_top_margin"
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/login_input"
+            android:id="@+id/email_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"

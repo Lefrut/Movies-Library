@@ -11,9 +11,13 @@ import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import ru.dashkevich.profile.R
 
 class ExitDialogFragment() : DialogFragment() {
+
+
 
     private fun findRootNavController(): NavController {
         val host = requireActivity()
@@ -28,8 +32,9 @@ class ExitDialogFragment() : DialogFragment() {
         AlertDialog.Builder(requireContext())
             .setMessage("Вы точно хотите выйти?")
             .setPositiveButton("Да") { _, _ ->
-                val login = "https://ru.dashkevich.authorization/loginFragment"
 
+                Firebase.auth.signOut()
+                val login = "https://ru.dashkevich.authorization/loginFragment"
                 val uri = NavDeepLinkRequest.Builder
                     .fromUri(login.toUri())
                     .build()

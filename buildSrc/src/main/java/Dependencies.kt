@@ -7,6 +7,7 @@ object Dependencies {
         const val kotlinAndroid = "android"
         const val navigationSafeArgs = "androidx.navigation.safeargs"
         const val kapt = "kapt"
+        const val googleServices = "com.google.gms.google-services"
     }
 
     object ClassPath {
@@ -15,11 +16,13 @@ object Dependencies {
             const val gradle = "7.3.1"
             const val kotlin = "1.7.20"
             const val navigationSafeArgs = "2.5.3"
+            const val googleServices = "4.3.13"
         }
 
         const val gradlePlugin = "com.android.tools.build:gradle:${Version.gradle}"
         const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlin}"
         const val navigationSafeArgsPlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${Version.navigationSafeArgs}"
+        const val googleServicesPlugin = "com.google.gms:google-services:${Version.googleServices}"
 
     }
 
@@ -84,6 +87,7 @@ object Dependencies {
             const val coil = "2.2.2"
             const val koin = "3.2.2"
             const val koinAndroid = "3.3.0"
+            const val firebaseBom = "31.1.1"
         }
 
         const val dataStorePreferences = "androidx.datastore:datastore-preferences:${Version.dataStore}"
@@ -97,6 +101,10 @@ object Dependencies {
 
         const val koin = "io.insert-koin:koin-core:${Version.koin}"
         const val koinAndroid = "io.insert-koin:koin-android:${Version.koinAndroid}"
+
+        const val firebaseBom = "com.google.firebase:firebase-bom:${Version.firebaseBom}"
+        const val firebaseAnalyticsKtx = "com.google.firebase:firebase-analytics-ktx"
+        const val firebaseAuth = "com.google.firebase:firebase-auth-ktx"
 
 
     }

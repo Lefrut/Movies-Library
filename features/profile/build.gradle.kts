@@ -2,6 +2,7 @@ plugins {
     id(Dependencies.Plugins.library)
     id(Dependencies.Plugins.navigationSafeArgs)
     kotlin(Dependencies.Plugins.kotlinAndroid)
+    id(Dependencies.Plugins.googleServices)
 }
 
 android {
@@ -44,6 +45,12 @@ dependencies {
     implementation(project(":navigation"))
 
 
+    //Firebase
+    implementation(platform(Dependencies.Other.firebaseBom))
+    implementation(Dependencies.Other.firebaseAnalyticsKtx)
+    implementation(Dependencies.Other.firebaseAuth)
+
+    //Android
     implementation(Dependencies.Android.viewPager)
     implementation(Dependencies.Android.constraintLayout)
     implementation(Dependencies.Android.legacySupportV4)
