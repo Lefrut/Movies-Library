@@ -27,25 +27,19 @@ class LibraryViewModel(
     val viewState: LiveData<LibraryState> = _viewState
 
 
-//    init {
-//        moviesRepository.observeTopFilms()
-//            .onEach {
-//                _viewState.postValue(viewState.value?.copy(pagingMoviesData = it))
-//            }.cachedIn(viewModelScope)
-//    }
-
 
     //TODO("If created filters")
     @OptIn(FlowPreview::class)
     val filmsFlow: Flow<PagingData<PresentedFilm>> = _viewState.asFlow()
         .flatMapLatest {
-            moviesRepository.observeTopFilms()
+            val a = moviesRepository.observeTopFilms()
+            a
         }.cachedIn(viewModelScope)
 
     val noFilmsFlow: StateFlow<PagingData<PresentedFilm>> =
         moviesRepository.observeTopFilms()
             .cachedIn(viewModelScope)
-            .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
+            .stateIn(viewModelScope, SharingStarted.Eagerly, PagingData.empty())
 
 
     override fun processingEvent(event: LibraryEvent) {
@@ -91,9 +85,12 @@ class LibraryViewModel(
     }
 
     private fun leavingScreen() {
-        _viewState.postValue(LibraryState())
+        _viewState.postValue(LibraryState(screenStatus = ScreenStatus.Success))
     }
 
+    fun screenStatusUpdate(screenStatus: ScreenStatus){
+        _viewState.postValue(viewState.value?.copy(screenStatus = screenStatus))
+    }
 
     private fun requestResultClicked() {
         viewModelScope.launch(Dispatchers.IO) {
