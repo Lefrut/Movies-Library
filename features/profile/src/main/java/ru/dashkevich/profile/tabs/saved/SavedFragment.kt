@@ -25,10 +25,18 @@ class SavedFragment : Fragment(R.layout.fragment_saved) {
                 presenter.updateDeleteUI(saved,index, moviesAdapter)
             }
         )
-        binding.savedRecyclerView.adapter = moviesAdapter
-        binding.savedRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.apply {
 
-        presenter.updateGetUI(adapter = moviesAdapter)
+            savedRecyclerView.adapter = moviesAdapter
+            savedRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+            presenter.updateGetUI(adapter = moviesAdapter, progressBar = progressBar)
+
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        presenter.stopWorking()
     }
 
 }

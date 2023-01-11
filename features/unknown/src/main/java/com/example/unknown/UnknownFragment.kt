@@ -8,13 +8,16 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.unknown.databinding.FragmentUnknownBinding
+import kotlinx.coroutines.*
 
 
 class UnknownFragment: Fragment(R.layout.fragment_unknown) {
 
     lateinit var binding: FragmentUnknownBinding
+    lateinit var job: Job
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,18 +32,22 @@ class UnknownFragment: Fragment(R.layout.fragment_unknown) {
                 javaScriptEnabled = true
                 loadWithOverviewMode = true
             }
-            loadUrl(url)
+            job = CoroutineScope(Dispatchers.Main).launch(start = CoroutineStart.DEFAULT) {
+                loadUrl(url)
+                delay(1500)
+                binding.progressBar.isVisible = false
+            }
         }
 
         binding.webView.webViewClient = object : WebViewClient() {
 
-            lateinit var currentUsl: String
+            lateinit var currentUrl: String
 
             override fun shouldOverrideUrlLoading(
                 view: WebView?,
                 request: WebResourceRequest?
             ): Boolean {
-                currentUsl = url
+                currentUrl = url
                 if (url.startsWith("http") || url.startsWith("https")){
                     return false
                 }
@@ -70,8 +77,8 @@ class UnknownFragment: Fragment(R.layout.fragment_unknown) {
 
     override fun onStop() {
         super.onStop()
+        job.cancel()
         (activity as AppCompatActivity).supportActionBar?.show()
-
     }
 
 }
