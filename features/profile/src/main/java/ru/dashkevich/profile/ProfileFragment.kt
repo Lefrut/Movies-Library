@@ -100,35 +100,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         return true
     }
 
-
-    //No work
-    private fun MenuHost.addCustomMenu() {
-        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
-            title = "Профиль"
-        }
-        addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.profile_m, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                when (menuItem.itemId) {
-                    R.id.exit_item_profile -> {
-                        ExitDialogFragment()
-                            .show(childFragmentManager, ExitDialogFragment.TAG)
-                        //findNavController().navigate(R.id.action)
-                        Log.d("Menu", "Menu exit item clicked")
-                        return onMenuItemSelected(menuItem)
-                    }
-                }
-                Log.d("Menu", "onMenuItemSelected worked")
-
-                return true
-            }
-
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
-    }
-
     override fun onStop() {
         super.onStop()
         (requireActivity() as AppCompatActivity).supportActionBar?.apply {

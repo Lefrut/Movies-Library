@@ -45,17 +45,7 @@ class StartActivity : AppCompatActivity() {
                 menuInflater.inflate(R.menu.basic_menu, menu)
             }
 
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                when(menuItem.itemId){
-                    //android.R.id.home -> { onNavigateUp() }
-                }
-                return true
-            }
-
-            override fun onPrepareMenu(menu: Menu) {
-                super.onPrepareMenu(menu)
-                //val item = menu.findItem()
-            }
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean = true
         })
 
 
@@ -65,22 +55,13 @@ class StartActivity : AppCompatActivity() {
             modules(dataModules + domainModules + viewModelModule)
         }
 
-//    id("org.jetbrains.kotlin.android")
     }
 
-    fun updateToolbar(){
-        when(val id = navController.currentDestination?.id){
-            com.example.unknown.R.id.unknownFragment ->{
-                supportActionBar?.hide()
-            }else -> {
-                //supportActionBar.
-            }
-        }
-    }
-
-    @Deprecated("Deprecated in Java", ReplaceWith("navController.popBackStack()"))
+    @Deprecated(
+        "Deprecated in Java",
+        ReplaceWith("navController.popBackStack()")
+    )
     override fun onBackPressed() {
-
         navController.popBackStack()
     }
 

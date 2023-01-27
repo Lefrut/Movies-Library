@@ -17,7 +17,6 @@ import ru.dashkevich.navigation.databinding.FragmentMainBinding
 class MainFragment : Fragment(R.layout.fragment_main) {
 
 
-    lateinit var rootNavController: NavController
     private lateinit var binding: FragmentMainBinding
     private lateinit var tabsNavController: NavController
 
@@ -26,14 +25,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         binding = FragmentMainBinding.bind(view)
 
 
-        //Передавать аргментом navController
-        rootNavController = findNavController()
-
         val navHostFragment = childFragmentManager
             .findFragmentById(R.id.main_fragment_container) as NavHostFragment
         tabsNavController = navHostFragment.navController
 
-        //val rootNavController = findNavController()
 
         binding.bottomNav.setupWithNavController(tabsNavController)
     }
