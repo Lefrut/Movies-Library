@@ -71,6 +71,7 @@ dependencies {
     implementation(Dependencies.Android.coreKtx)
     implementation(Dependencies.Android.appCompat)
     implementation(Dependencies.Android.material)
+    implementation("androidx.preference:preference-ktx:1.2.0")
     testImplementation(Dependencies.AndroidTest.junit)
     androidTestImplementation(Dependencies.AndroidTest.androidJunit)
     androidTestImplementation(Dependencies.AndroidTest.espresso)
