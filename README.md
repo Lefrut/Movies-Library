@@ -5,7 +5,7 @@
 ## 🎨 Интерфейс
 | Sign In | Profile | Home |
 | --------------- |--------------- |--------------- |
-| <img src="https://github.com/Lefrut/Movies-Library/blob/main/login.jpg" width="300" height="600" />|<img src="https://github.com/Lefrut/Movies-Library/blob/main/profile.jpg" width="300" height="600" /> | <img src="https://github.com/Lefrut/Movies-Library/blob/main/home.jpg" width="300" height="600" />|
+| <img src="https://github.com/Lefrut/Movies-Library/blob/main/login.jpg" width="300" height="600" />|<img src="https://github.com/Lefrut/Movies-Library/blob/main/profile.jpg" width="300" height="600" /> | <img src="https://github.com/Lefrut/Movies-Library/blob/main/home2.jpg" width="300" height="600" />|
 
 
 ## 📃 Используемые технологии
