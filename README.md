@@ -5,7 +5,7 @@
 ## 🎨 Интерфейс
 | Sign In |
 | --------------- |
-| ![login](https://github.com/Lefrut/Movies-Library/blob/main/login.jpg = 400x250) |
+| ![login](https://github.com/Lefrut/Movies-Library/blob/main/login.jpg =250x250) |
 
 ## 📃 Используемые технологии
 - Retrofit
