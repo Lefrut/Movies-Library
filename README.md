@@ -5,7 +5,7 @@
 ## 🎨 Интерфейс
 | Sign In |
 | --------------- |
-| <img src="https://github.com/Lefrut/Movies-Library/blob/main/login.jpg" width="100" height="200" />|
+| <img src="https://github.com/Lefrut/Movies-Library/blob/main/login.jpg" width="200" height="400" />|
 
 
 ## 📃 Используемые технологии
